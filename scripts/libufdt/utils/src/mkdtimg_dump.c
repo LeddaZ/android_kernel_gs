@@ -21,6 +21,7 @@
 
 #include "libacpi.h"
 #include "libfdt.h"
+#include "mkdtimg.h"
 
 #include "dt_table.h"
 
