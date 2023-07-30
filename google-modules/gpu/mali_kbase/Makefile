@@ -246,6 +246,7 @@ EXTRA_CFLAGS += -DCONFIG_MALI_PLATFORM_NAME=$(CONFIG_MALI_PLATFORM_NAME)
 #
 EXTRA_SYMBOLS += $(OUT_DIR)/../google-modules/gpu/mali_pixel/Module.symvers
 
+ifdef MALI_ENABLE_EXTRAWARN
 KBUILD_CFLAGS += -Wall -Werror
 
 # The following were added to align with W=1 in scripts/Makefile.extrawarn
@@ -267,8 +268,10 @@ KBUILD_CFLAGS += -Wno-sign-compare
 KBUILD_CFLAGS += -Wno-shift-negative-value
 # This flag is needed to avoid build errors on older kernels
 KBUILD_CFLAGS += $(call cc-option, -Wno-cast-function-type)
+endif
 
 KBUILD_CPPFLAGS += -DKBUILD_EXTRA_WARN1
+KBUILD_OPTIONS += $(MAKE_ARGS)
 
 # The following were added to align with W=2 in scripts/Makefile.extrawarn
 # from the Linux source tree (v5.18.14)
@@ -280,6 +283,7 @@ KBUILD_CFLAGS += $(call cc-option, -Wlogical-op)
 KBUILD_CFLAGS += -Wmissing-field-initializers
 # -Wtype-limits must be disabled due to build failures on kernel 5.x
 KBUILD_CFLAGS += -Wno-type-limits
+
 KBUILD_CFLAGS += $(call cc-option, -Wmaybe-uninitialized)
 KBUILD_CFLAGS += $(call cc-option, -Wunused-macros)
 
